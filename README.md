@@ -1,5 +1,7 @@
-# Multiple Granularity Network
-Implement of paper:[Learning Discriminative Features with Multiple Granularities for Person Re-Identification](https://arxiv.org/abs/1804.01438v1)
+## Efficient Person ReID system based on Active Learning 
+Origin ReID-Model: [Learning Discriminative Features with Multiple Granularities for Person Re-Identification](https://arxiv.org/abs/1804.01438v1)
+
+Active Learning: Uncertainty Sampling (Least Confidence)
 
 ## Dependencies
 
@@ -10,19 +12,7 @@ Implement of paper:[Learning Discriminative Features with Multiple Granularities
 - numpy
 - scikit_learn
 
-
-
-## Current Result
-
-| Re-Ranking| backbone |  mAP | rank1 | rank3 | rank5 | rank10 |  
-| :------: | :------: |  :------: | :------: | :------: | :------: |  :------: |   
-| yes | resnet50 |  94.33 | 95.58 | 97.54 | 97.92 | 98.46 | 
-| no | resnet50 |  86.15 | 94.95 | 97.42 | 98.07 | 98.93 | 
-
-
-
 ## Data
-
 The data structure would look like:
 ```
 data/
@@ -30,6 +20,7 @@ data/
     bounding_box_test/
     query/
 ```
+
 #### Market1501 
 Download from [here](http://www.liangzheng.org/Project/project_reid.html)
 
@@ -48,40 +39,19 @@ python utils/transform_cuhk03.py --src <path/to/cuhk03_release> --dst <path/to/s
 NOTICE:You need to change num_classes in network depend on how many people in your train dataset! e.g. 751 in Market1501
 
 ## Weights
-
 Pretrained weight download from [here](https://drive.google.com/open?id=16V7ZsflBbINHPjh_UVYGBVO6NuSxEMTi)
 
 ## Train
-
-You can specify more parameters in opt.py
-
 ```
 python main.py --mode train --data_path <path/to/Market-1501-v15.09.15> 
 ```
 
 ## Evaluate
-
-Use pretrained weight or your trained weight
-
 ```
 python main.py --mode evaluate --data_path <path/to/Market-1501-v15.09.15> --weight <path/to/weight_name.pt> 
 ```
 
-## Visualize
-
-Visualize rank10 query result of one image(query from bounding_box_test)
-
-Extract features will take a few munutes, or you can save features as .mat file for multiple uses
-
-![image](https://s1.ax1x.com/2018/11/27/FV9xyj.png)
-
-```
-python main.py --mode vis --query_image <path/to/query_image> --weight <path/to/weight_name.pt> 
-```
-
-
-## Citation
-
+## Citation of Origin MGN
 ```text
 @ARTICLE{2018arXiv180401438W,
     author = {{Wang}, G. and {Yuan}, Y. and {Chen}, X. and {Li}, J. and {Zhou}, X.},
